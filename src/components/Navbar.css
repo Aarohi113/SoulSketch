@@ -1,0 +1,53 @@
+.custom-navbar {
+  width: 100%;
+  height: 80px; /* Aap height adjust kar sakte hain */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  /* Soft Pink to Lavender Gradient */
+  background: linear-gradient(90deg, #fbe4ed 0%, #fdf2f7 50%, #f1e9f9 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.navbar-container {
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-logo-image {
+  height: 50px; /* Image size adjust karne ke liye */
+  width: auto;
+  object-fit: contain;
+}
+
+/* Reference image mein jo halki strips/lines hain unke liye */
+.diagonal-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #000 0,
+    #000 1px,
+    transparent 0,
+    transparent 50%
+  );
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+
+.bottom-gradient-shade {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to top, rgba(255,255,255,0.6), transparent);
+  pointer-events: none;
+}
