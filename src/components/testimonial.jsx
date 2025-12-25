@@ -85,7 +85,7 @@ const TestimonialSection = () => {
           >
             {testimonials.map((item, index) => (
               <div key={index} className="min-w-full md:min-w-[33.333%] px-3 box-border">
-                <div className="bg-[#f4c6cdff] p-8 rounded-2xl shadow-sm border border-red-50 h-[380px] flex flex-col justify-between">
+                <div className="bg-[#f4c6cdff] p-8 rounded-2xl shadow-sm border border-red-50 h-[420px] flex flex-col justify-between">
                   <div>
                     <div className="flex gap-1 mb-6">
                       {[...Array(5)].map((_, i) => (
