@@ -13,7 +13,7 @@ const TrustSection = () => {
   
 
   return (
-    <div className="w-full bg-[#f4c6cdff] py-16 px-6 font-serif ">
+    <div className="w-full bg-[#f4c6cdff] py-16 px-6 md:px-12 font-serif ">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
         
         {/* Left Side: Text Content */}
