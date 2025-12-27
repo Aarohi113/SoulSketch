@@ -1,0 +1,41 @@
+/* HowItWorks.css */
+
+.how-it-works-section {
+  background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+  width: 100%;
+}
+
+.hiw-main-title {
+  font-family: 'Georgia', serif;
+  line-height: 1.2;
+}
+
+.hiw-card {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hiw-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Mobile par Step indicators ko behtar dikhane ke liye */
+@media (max-width: 640px) {
+  .hiw-grid {
+    gap: 20px;
+  }
+  
+  .hiw-card {
+    padding: 30px 20px;
+  }
+}
+
+/* Button glow effect */
+.hiw-reveal-btn {
+  box-shadow: 0 4px 15px rgba(214, 77, 110, 0.3);
+}
+
+.step-icon-svg {
+  stroke-width: 1.5px;
+}

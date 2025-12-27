@@ -1,0 +1,100 @@
+.sticky-footer-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 9999; /* Taaki ye sabse upar dikhe */
+  padding: 12px 0;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.footer-left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.offer-label {
+  font-size: 12px;
+  color: #f48fb1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.timer-badge {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.old-price-footer {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 18px;
+}
+
+.current-price-footer {
+  color: #d64d6e;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.footer-action-btn {
+  background: linear-gradient(180deg, #e35d7c 0%, #d64d6e 100%);
+  color: white;
+  border: none;
+  padding: 14px 35px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 15px rgba(214, 77, 110, 0.3);
+}
+
+.footer-action-btn:hover {
+  transform: scale(1.02);
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 600px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .old-price-footer { font-size: 14px; }
+  .current-price-footer { font-size: 22px; }
+  .footer-action-btn { padding: 10px 20px; font-size: 14px; }
+  .timer-badge { display: none; } /* Mobile pe space bachane ke liye hide kar sakte hain */
+}
+.timer-badge {
+  background-color: #fef2f2; /* Light red background */
+  color: #d64d6e;           /* Theme pink/red color */
+  border: 1px solid #fecaca;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 800;         /* Extra bold for urgency */
+  font-family: 'Courier New', Courier, monospace; /* Digital clock look */
+  min-width: 80px;
+  text-align: center;
+}
