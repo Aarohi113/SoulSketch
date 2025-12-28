@@ -3,48 +3,69 @@ import React from 'react';
 const LegalPage = () => {
   // Navigation items ka array
   const sections = [
-    { title: "About Us", id: "about-us", desc: "Jump to about us.",content: `At EasyAstro, we believe the universe holds answers to questions your heart hasn’t dared to ask yet.
-    We’re a team of passionate astrologers, intuitive artists, and energy readers helping people across India discover their soulmate, unlock wealth, and decode their life path — all through ancient wisdom delivered in modern ways.` },
-    { title: "Privacy Policy", id: "privacy-policy", desc: "Jump to privacy policy.",content: `We respect your privacy. This policy explains how we collect, use, store, and protect your personal data.
-    We collect your name, email, date of birth, time, and location solely to prepare your personalized astrology products.
-    We do not share, sell, or rent your data to third parties.
-    All data is stored securely and only authorized team members can access it.
-    Payment processing is handled by secure third-party gateways; we do not store card information.` },
-    { title: "Terms & Conditions", id: "terms-conditions", desc: "Jump to terms & conditions.",content: `These terms set the rules for using our website and buying our products.
+    { title: "எங்களைப் பற்றி", id: "about-us", desc: "எங்களைப் பற்றி அறிய செல்லவும்",content: `EasyAstro-வில், உங்கள் மனம் இன்னும் கேட்க துணியாத கேள்விகளுக்கான பதில்கள் இந்த பிரபஞ்சத்தில் உள்ளன என்று நாங்கள் நம்புகிறோம்.
 
-All products are digital and delivered via email; no physical items are shipped unless stated otherwise.
-By purchasing, you agree that our astrology readings and sketches are for entertainment and personal insight purposes only, not a substitute for professional, medical, or financial advice.
-You must provide accurate birth details for accurate reports; incorrect details may affect results.
-Unauthorized reproduction, resale, or redistribution of our products is prohibited.
-Prices and promotions are subject to change without notice.` },
-    { title: "Refund Policy", id: "refund-policy", desc: "Jump to refund policy.",content: `Our refund policy outlines when refunds are allowed.
+இந்தியாவெங்கும் உள்ள மக்களுக்கு அவர்களின் ஆத்ம துணையை கண்டறிய, செல்வ வாய்ப்புகளைத் திறக்க, வாழ்க்கைப் பாதையை புரிந்துகொள்ள உதவும் ஆர்வமுள்ள ஜோதிடர்கள், உள்ளுணர்வு கலைஞர்கள் மற்றும் சக்தி வாசகர்கள் ஆகியோரின் குழுவாக நாங்கள் செயல்படுகிறோம் — பண்டைய ஞானத்தை நவீன முறையில் வழங்கி.` },
+    { title: "தனியுரிமைக் கொள்கை", id: "privacy-policy", desc: "தனியுரிமைக் கொள்கைக்கு செல்லவும்",content: `நாங்கள் உங்கள் தனியுரிமையை மதிக்கிறோம். இந்த கொள்கை, உங்கள் தனிப்பட்ட தரவுகளை எவ்வாறு சேகரிக்கிறோம், பயன்படுத்துகிறோம், சேமிக்கிறோம் மற்றும் பாதுகாக்கிறோம் என்பதை விளக்குகிறது.
 
-Approved refunds will be credited into original payment method within 5-7 Days
-As all products are digital and personalized, we generally do not offer refunds once the product has been delivered.
-Refunds may be granted in cases of:
-Duplicate payment
-Non-delivery due to technical error
-If you believe there’s an error with your order, contact us within 48 hours of delivery.` },
-    { title: "Delivery Policy", id: "delivery-policy", desc: "Jump to delivery policy.",content: `How and when digital products are delivered.
+• உங்கள் பெயர், மின்னஞ்சல், பிறந்த தேதி, பிறந்த நேரம் மற்றும் இடம் ஆகியவற்றை உங்களுக்கு தனிப்பட்ட ஜோதிட சேவைகள் தயாரிக்க மட்டுமே சேகரிக்கிறோம்.
 
-Digital products are typically delivered within 24–48 hours of order placement.
-Delivery is via the email address you provide at checkout — please ensure it’s correct.
-Delays may occur during high-order periods; we will notify you if your order is delayed.` },
-    { title: "Disclaimer", id: "disclaimer", desc: "Jump to disclaimer.",content: `Limitations of liability for our services and content.
+• உங்கள் தரவுகளை எந்த மூன்றாம் தரப்பினருடனும் பகிரவும், விற்கவும் அல்லது வாடகைக்கு விடவும் மாட்டோம்.
 
-Our astrology products are intended for entertainment and personal development purposes only.
-We do not guarantee specific outcomes or results from using our products.
-You are responsible for any decisions you make based on our readings or sketches.` },
-    { title: "Cookie Policy", id: "cookie-policy", desc: "Jump to cookie policy.",content: `How we use cookies and similar technologies.
+• அனைத்து தரவுகளும் பாதுகாப்பாக சேமிக்கப்படுகின்றன; அனுமதி பெற்ற குழு உறுப்பினர்களுக்கே அணுகல் வழங்கப்படுகிறது.
 
-We use cookies to improve your browsing experience and analyze traffic.
-Cookies help remember your preferences and personalize content.
-You can disable cookies in your browser settings, but this may affect site functionality.` },
-    { title: "Contact Policy", id: "contact-policy", desc: "Jump to contact policy.",content: `How to reach us for support.
+• கட்டண செயலாக்கம் பாதுகாப்பான மூன்றாம் தரப்பு கேட்வேகள் மூலம் மேற்கொள்ளப்படுகிறது; நாங்கள் உங்கள் கார்டு விவரங்களை சேமிப்பதில்லை.` },
+    { title: "விதிமுறைகள் & நிபந்தனைகள்", id: "terms-conditions", desc: "விதிமுறைகள் & நிபந்தனைகளுக்கு செல்லவும்",content: `இந்த விதிமுறைகள், எங்கள் இணையதளத்தை பயன்படுத்துவதற்கும் எங்கள் தயாரிப்புகளை வாங்குவதற்குமான விதிகளை நிர்ணயிக்கின்றன.
 
-For order questions, email no-reply@easyastro.in.
-Support available Monday–Saturday, 10 AM–6 PM IST.
-Average response time: 24–48 hours.` },
+• அனைத்து தயாரிப்புகளும் டிஜிட்டல் வடிவில் வழங்கப்படுகின்றன மற்றும் மின்னஞ்சல் மூலம் அனுப்பப்படும்; தனியாக குறிப்பிடப்படாவிட்டால் எந்த உட்பொருட்களும் அனுப்பப்படமாட்டாது.
+
+• வாங்கும் போது, எங்கள் ஜோதிட வாசிப்புகள் மற்றும் வரைபடங்கள் பொழுதுபோக்கு மற்றும் தனிப்பட்ட வழிகாட்டலுக்காக மட்டுமே என்பதையும், அவை மருத்துவ, தொழில்முறை அல்லது நிதி ஆலோசனைகளுக்கு மாற்றாக அல்ல என்பதையும் நீங்கள் ஒப்புக்கொள்கிறீர்கள்.
+
+• துல்லியமான அறிக்கைகளுக்காக சரியான பிறப்பு விவரங்களை வழங்க வேண்டும்; தவறான விவரங்கள் முடிவுகளை பாதிக்கலாம்.
+
+• எங்கள் தயாரிப்புகளை அனுமதி இல்லாமல் நகலெடுக்க, மறுவிற்பனை செய்ய அல்லது மீண்டும் பகிர்வது தடைசெய்யப்பட்டுள்ளது.
+
+• விலைகள் மற்றும் சலுகைகள் முன் அறிவிப்பின்றி மாற்றப்படலாம்.` },
+    { title: "திரும்பப்பணம் கொள்கை", id: "refund-policy", desc: "திரும்பப்பணம் கொள்கைக்கு செல்லவும்.",content: `எங்கள் திரும்பப்பணம் (Refund) கொள்கை, எந்த சூழ்நிலைகளில் திரும்பப்பணம் வழங்கப்படும் என்பதை விளக்குகிறது.
+
+• ஒப்புதல் பெற்ற திரும்பப்பணங்கள், அசல் கட்டண முறையிலேயே 5–7 நாட்களுக்குள் செலுத்தப்படும்.
+
+• அனைத்து தயாரிப்புகளும் டிஜிட்டல் மற்றும் தனிப்பயன் என்பதால், தயாரிப்பு வழங்கப்பட்ட பிறகு பொதுவாக திரும்பப்பணம் வழங்கப்படாது.
+
+• கீழ்க்கண்ட சூழ்நிலைகளில் திரும்பப்பணம் வழங்கப்படலாம்:
+– இரட்டை கட்டணம் (Duplicate Payment)
+– தொழில்நுட்ப கோளாறால் தயாரிப்பு கிடைக்காதது (Non-delivery)
+
+• உங்கள் ஆர்டரில் ஏதேனும் பிழை இருப்பதாக நினைத்தால், விநியோகத்திற்குப் பிறகு 48 மணி நேரத்திற்குள் எங்களை தொடர்பு கொள்ளவும்.` },
+    { title: "விநியோகக் கொள்கை", id: "delivery-policy", desc: "விநியோகக் கொள்கைக்கு செல்லவும்",content: `டிஜிட்டல் தயாரிப்புகள் எவ்வாறு மற்றும் எப்போது வழங்கப்படுகின்றன
+
+• டிஜிட்டல் தயாரிப்புகள் பொதுவாக ஆர்டர் செய்த 24–48 மணி நேரத்திற்குள் வழங்கப்படும்.
+
+• விநியோகம், செக்‌அவுட் (Checkout) நேரத்தில் நீங்கள் வழங்கும் மின்னஞ்சல் முகவரிக்கே அனுப்பப்படும் — அது சரியானதா என்பதை தயவுசெய்து உறுதி செய்யவும்.
+
+• அதிக ஆர்டர் வருகை உள்ள காலங்களில் விநியோகத்தில் தாமதம் ஏற்படலாம்; அப்படியானால் உங்கள் ஆர்டர் தாமதம் குறித்து நாங்கள் உங்களுக்கு தகவல் அளிப்போம்.` },
+    { title: "பெறுப்புத் துறப்பு", id: "disclaimer", desc: "பெறுப்புத் துறப்பிற்கு செல்லவும்",content: `எங்கள் சேவைகள் மற்றும் உள்ளடக்கங்களுக்கான பொறுப்பு வரம்புகள்
+
+• எங்கள் ஜோதிட தயாரிப்புகள் பொழுதுபோக்கு மற்றும் தனிப்பட்ட வளர்ச்சி நோக்கத்திற்காக மட்டுமே உருவாக்கப்பட்டவை.
+
+• எங்கள் தயாரிப்புகளை பயன்படுத்துவதன் மூலம் குறிப்பிட்ட முடிவுகள் அல்லது பலன்கள் கிடைக்கும் என்று எங்களால் உத்தரவாதம் அளிக்க முடியாது.
+
+• எங்கள் வாசிப்புகள் அல்லது வரைபடங்களை அடிப்படையாக கொண்டு நீங்கள் எடுக்கும் எந்த முடிவுகளுக்கும் முழுப் பொறுப்பும் உங்களதே.` },
+    { title: "குக்கீ கொள்கை", id: "cookie-policy", desc: "குக்கீ கொள்கைக்கு செல்லவும்.",content: `குக்கீஸ் (Cookies) மற்றும் இதர ஒத்த தொழில்நுட்பங்களை எவ்வாறு பயன்படுத்துகிறோம்
+
+• உங்கள் உலாவல் அனுபவத்தை மேம்படுத்தவும், இணையதளப் போக்குவரத்தை பகுப்பாய்வு செய்யவும் நாங்கள் குக்கீஸ்களை பயன்படுத்துகிறோம்.
+
+• குக்கீஸ்கள் உங்கள் விருப்பங்களை நினைவில் வைத்து, உங்களுக்கு ஏற்ற உள்ளடக்கங்களை தனிப்பயனாக்க உதவுகின்றன.
+
+• உங்கள் உலாவி (Browser) அமைப்புகளில் குக்கீஸ்களை முடக்கலாம் (Disable); ஆனால் இதனால் இணையதளத்தின் சில செயல்பாடுகள் பாதிக்கப்படலாம்.` },
+    { title: "தொடர்பு கொள்கை", id: "contact-policy", desc: "தொடர்பு கொள்கைக்கு செல்லவும்.",content: `எங்களை எவ்வாறு தொடர்பு கொள்ளலாம் (ஆதரவு சேவை)
+
+• ஆர்டர் தொடர்பான கேள்விகளுக்கு, no-reply@easyastro.in
+ என்ற மின்னஞ்சலுக்கு எழுதலாம்.
+
+• ஆதரவு சேவை திங்கள் முதல் சனி வரை, காலை 10 மணி முதல் மாலை 6 மணி (IST) வரை கிடைக்கும்.
+
+• சராசரி பதில் அளிக்கும் நேரம்: 24–48 மணி நேரம்.` },
   ];
 
   // Smooth scroll function
@@ -60,10 +81,10 @@ Average response time: 24–48 hours.` },
       {/* Header Section */}
       <div className="max-w-6xl mx-auto mb-12">
         <span className="bg-white px-3 py-1 rounded-full text-xs text-gray-500 border border-gray-100">
-          Updated • 28/12/2025
+         புதுப்பிக்கப்பட்டது • 28/12/2025
         </span>
-        <h1 className="text-5xl font-bold text-[#4A2C2C] mt-6 mb-4">EasyAstro Legal & About Us</h1>
-        <p className="text-gray-600 text-lg">Learn about our story, our policies, and the terms for using our services.</p>
+        <h1 className="text-5xl font-bold text-[#4A2C2C] mt-6 mb-4">EasyAstro சட்ட விவரங்கள் & எங்களைப் பற்றி</h1>
+        <p className="text-gray-600 text-lg">எங்கள் கதையை, கொள்கைகளை மற்றும் எங்கள் சேவைகளை பயன்படுத்துவதற்கான விதிமுறைகளைப் பற்றி அறிக.</p>
       </div>
 
       {/* Grid Cards */}
