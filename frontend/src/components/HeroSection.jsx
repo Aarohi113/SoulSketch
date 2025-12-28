@@ -1,6 +1,6 @@
 import React from 'react';
 import './HeroSection.css';
-import logoImg from '../assets/logo.png'; 
+import logoImg from '../assets/logo (2).png'; 
 import heroCoupleImg from '../assets/firstImg.png'; 
 import { Users, Star, Clock, ShieldCheck } from 'lucide-react';
 import {Link} from 'react-router-dom';
