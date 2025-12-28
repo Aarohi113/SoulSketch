@@ -56,7 +56,7 @@ function App() {
         <div className="relative z-10">
           <Routes>
             {/* Main Landing Page */}
-            {/* <Route path="/" element={<HomePage />} /> */}
+         <Route path="/" element={<Navigate to="/tamil" />} />
              <Route path="/tamil" element={<HomePage />} />
             
             {/* Soulmate Cart Page */}
