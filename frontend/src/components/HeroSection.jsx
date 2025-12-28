@@ -31,7 +31,7 @@ const HeroSection = () => {
           </div>
           
           <h1 className="hero-title text-3xl md:text-5xl lg:text-6xl font-bold text-[#3d1a21] leading-tight mb-6">
-            See Your <span className="highlight-text text-pink-500">ஆத்ம துணையின் முகம்</span> — இன்று முதல்.
+            நேரடிப் பொருள் <span className="highlight-text text-pink-500">ஆத்ம துணையின் முகம்</span> — இன்று முதல்.
           </h1>
           
           <p className="hero-description text-gray-700 text-sm md:text-lg mb-8 leading-relaxed  font-semibold">
