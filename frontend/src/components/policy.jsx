@@ -3,7 +3,7 @@ import React from 'react';
 const LegalPage = () => {
   // Navigation items ka array
   const sections = [
-    { title: "About Us", id: "about-us", desc: "Jump to about us." },
+    { title: "About Us", id: "about-us", desc: "Jump to about us.",content: "these are my abut us" },
     { title: "Privacy Policy", id: "privacy-policy", desc: "Jump to privacy policy." },
     { title: "Terms & Conditions", id: "terms-conditions", desc: "Jump to terms & conditions." },
     { title: "Refund Policy", id: "refund-policy", desc: "Jump to refund policy." },
@@ -55,9 +55,7 @@ const LegalPage = () => {
           <div key={item.id} id={item.id} className="pt-10 border-t border-gray-200">
             <h2 className="text-3xl font-bold text-[#4A2C2C] mb-4">{item.title}</h2>
             <div className="text-gray-700 leading-relaxed bg-white p-8 rounded-2xl shadow-sm">
-              <p>Yaha par aapka <strong>{item.title}</strong> ka detailed content aayega. 
-              Aap is div ki ID ko use karke upar se scroll karke yaha aa sakte hain.</p>
-              <p className="mt-4 text-sm text-gray-500 italic">Example text: Hamari services ko use karne ke liye dhanyawad...</p>
+             <p className="whitespace-pre-line">{item.content}</p>
             </div>
           </div>
         ))}
