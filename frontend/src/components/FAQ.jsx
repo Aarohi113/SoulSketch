@@ -78,7 +78,7 @@ const FAQSection = () => {
         {/* Bottom Link */}
         <div className="mt-2">
           <Link
-            href="/policy" 
+            to="/tamil-policy" 
             className="text-[#8B7373] hover:text-[#D64F63] underline text-lg transition-colors"
           >
             கொள்கை & ஆதரவு
