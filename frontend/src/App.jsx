@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Sparkles } from 'lucide-react';
 
 // Components
@@ -56,7 +56,8 @@ function App() {
         <div className="relative z-10">
           <Routes>
             {/* Main Landing Page */}
-              <Route path="/" element={<HomePage />} />
+           <Route path="/" element={<Navigate to="/tamil" replace />} />
+              {/* <Route path="/" element={<HomePage />} /> */}
              <Route path="/tamil" element={<HomePage />} />
             
             {/* Soulmate Cart Page */}
