@@ -14,7 +14,7 @@ import Trust from './components/trust';
 import Faq from './components/FAQ';
 import Cart from './components/Cart'
 import AdminPanel from './components/AdminPanel';
-import policy from './components/policy';
+import Policy from './components/policy';
  // Naya Cart page import karein
 
 // Home Page Component (Saare purane sections yahan rahenge)
@@ -63,7 +63,7 @@ function App() {
             
             {/* Soulmate Cart Page */}
             {/* <Route path="/Cart" element={<Cart />} /> */}
-           <Route path="/tamil-policy" element={<policy/>}/>
+           <Route path="/tamil-policy" element={<Policy/>}/>
             <Route path="/tamil-cart" element={<Cart />} />
             <Route path="/admin" element={<AdminPanel />} />
           </Routes>
