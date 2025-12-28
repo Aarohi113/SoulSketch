@@ -34,7 +34,7 @@ const HeroSection = () => {
             நேரடிப் பொருள் <span className="highlight-text text-pink-500">ஆத்ம துணையின் முகம்</span> — இன்று முதல்.
           </h1>
           
-          <p className="hero-description text-gray-700 text-sm md:text-lg mb-8 leading-relaxed  font-semibold">
+          <p className="hero-description text-gray-700 text-lg md:text-lg mb-8 leading-relaxed  font-semibold">
             திறமைமிக்க ஜோதிடர்கள் மற்றும் உள்ஞான நிபுணர்களால் தேர்ந்தெடுக்கப்பட்டது.
             உங்களுக்காகவே உருவாக்கப்பட்ட தனிப்பட்ட, தனியுரிமை கொண்ட ஓவியம்
             24 மணி நேரத்திற்குள் பாதுகாப்பாக வழங்கப்படும்.
@@ -51,7 +51,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <p className="spots-left text-pink-700 font-bold text-sm mb-6 animate-pulse">
+          <p className="spots-left text-pink-700 font-bold text-lg mb-6 animate-pulse">
             இலவச விரிவான காதல் வாசிப்புக்கு இன்னும் 9 இடங்கள் மட்டுமே!
           </p>
 
@@ -67,7 +67,7 @@ const HeroSection = () => {
           <div className="image-card bg-white p-3 rounded-[30px] shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
             <img src={heroCoupleImg} alt="Couple" className="main-couple-img rounded-[24px] w-full h-auto object-cover" />
           </div>
-          <p className="sample-text text-center mt-6 text-xs text-gray-400 italic">மாதிரி படம் • உண்மையான ஓவியம் தனிப்பயனாக்கப்பட்டது</p>
+          <p className="sample-text text-center mt-6 text-lg text-gray-400 italic">மாதிரி படம் • உண்மையான ஓவியம் தனிப்பயனாக்கப்பட்டது</p>
         </div>
       </main>
 
