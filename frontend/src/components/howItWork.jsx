@@ -42,8 +42,8 @@ const HowItWorks = () => {
               <div className="icon-box-pink w-16 h-16 flex items-center justify-center bg-pink-50 rounded-2xl mb-6 text-pink-500">
                 {item.icon}
               </div>
-              <h3 className="hiw-card-title text-xl font-bold mb-4 text-[#3d1a21]">{item.title}</h3>
-              <p className="hiw-card-desc text-gray-600 leading-relaxed text-sm md:text-base">
+              <h3 className="hiw-card-title text-2xl font-bold mb-4 text-[#3d1a21]">{item.title}</h3>
+              <p className="hiw-card-desc text-gray-600 leading-relaxed text-lg md:text-base">
                 {item.desc}
               </p>
             </div>
@@ -56,10 +56,10 @@ const HowItWorks = () => {
             எனது துணையை இப்போது காணுங்கள்!
           </button>
           </Link>
-          <p className="hiw-warning text-red-500 font-bold text-sm mb-4 animate-pulse">
+          <p className="hiw-warning text-red-500 font-bold text-lg mb-4 animate-pulse">
             மிக குறைந்த இடங்கள் மட்டுமே மீதுள்ளது! சிறப்பு சலுகை முடிந்துகொள்ளும் முன் சீக்கிரம் பதிவு செய்யுங்கள்.
           </p>
-          <p className="hiw-subtext text-gray-500 text-xs md:text-sm">
+          <p className="hiw-subtext text-gray-500 text-lg md:text-sm">
             தனிப்பட்டது, பாதுகாப்பானது, உங்கள் தேவைக்கேற்றது — சில நிமிடங்களில் தொடங்குங்கள்.
           </p>
         </div>
