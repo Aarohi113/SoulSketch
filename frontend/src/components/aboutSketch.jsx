@@ -46,7 +46,7 @@ const AboutSketch = () => {
 
           <div className="about-button-group">
           <Link to="/tamil-cart" className="w-full md:w-auto" >
-          <button className="reveal-btn-large px-3">எனது துணையை காணவும்!</button>
+          <button className="reveal-btn-large">எனது துணையை காணவும்!</button>
           </Link>
             <div className="happy-customers-badge">
                <Heart size={18} className="heart-icon" />
