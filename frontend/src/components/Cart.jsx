@@ -21,7 +21,11 @@ const Cart = () => {
     placeofbirth: '',
     gender: 'Select gender'
   });
-
+const upsellItems = [
+    { id: 'horoscope', title: '2-Year Personal Horoscope Report', desc: "Get a roadmap of your next 24 months based on your unique birth chart. Know what's coming in love, career, money & health.", price: 99, oldPrice: 299 },
+    { id: 'wealth', title: 'Wealth Report', desc: "Confused about your money, career, or success path? Your birth chart holds powerful insights into what's blocking your abundance.", price: 99, oldPrice: 299 },
+    { id: 'ebook', title: 'Life path & Career guidance ebook', desc: "Get deep insights into your life purpose and professional growth through our specialized astrological ebook.", price: 99, oldPrice: 249 }
+  ];
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -29,9 +33,11 @@ const Cart = () => {
   const handleToggle = (key) => setUpsells(prev => ({ ...prev, [key]: !prev[key] }));
 
   // Pricing Logic
-  const activeUpsellsCount = Object.values(upsells).filter(Boolean).length;
+ const activeUpsellsCount = Object.values(upsells).filter(Boolean).length;
   const upsellTotal = activeUpsellsCount * upsellPrice;
+  const subtotal = mainProductOriginal + (activeUpsellsCount * 299); // Indicative subtotal
   const finalTotal = mainProductDiscounted + upsellTotal;
+  const totalDiscount = subtotal - finalTotal;
 
   // --- Razorpay Payment Function ---
   const initiatePayment = (orderIdFromBackend) => {
@@ -170,12 +176,52 @@ const Cart = () => {
             </div>
           </div>
         </section>
-
-        <section className="bg-white rounded-3xl p-8 shadow-sm border border-pink-50">
-          <div className="flex justify-between items-center mb-6">
-            <span className="text-xl font-bold text-gray-700">Total Amount</span>
-            <span className="text-3xl font-black text-[#D64D6E]">₹{finalTotal}</span>
+<section className="bg-[#FFF5F6] rounded-3xl p-6 md:p-8 border border-pink-100">
+          <h3 className="text-[#D64D6E] font-bold text-lg mb-1">● Enhance Your Love Journey</h3>
+          <p className="text-sm text-gray-500 mb-6 font-medium">Discover deeper cosmic guidance for your love life</p>
+          
+          <div className="space-y-6">
+            {upsellItems.map((item) => (
+              <div key={item.id} className="flex gap-4 items-start">
+                <input 
+                  type="checkbox" 
+                  checked={upsells[item.id]}
+                  onChange={() => handleToggle(item.id)}
+                  className="w-6 h-6 mt-1 rounded-md border-gray-300 text-[#D64D6E] focus:ring-[#D64D6E] cursor-pointer accent-[#D64D6E]"
+                />
+                <div className="flex-1">
+                  <div className="flex justify-between items-start">
+                    <h4 className="font-bold text-gray-800 text-[15px]">{item.title}</h4>
+                    <div className="text-right">
+                      <p className="font-bold text-gray-800">₹{item.price}</p>
+                      <p className="text-xs text-gray-400 line-through font-medium">₹{item.oldPrice}</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1 leading-relaxed pr-4">{item.desc}</p>
+                  <button className="text-[#D64D6E] text-xs font-bold underline mt-2">Show More</button>
+                </div>
+              </div>
+            ))}
           </div>
+        </section>
+        <section className="bg-white rounded-3xl p-8 shadow-sm border border-pink-50">
+          <h3 className="font-bold text-xl mb-6 text-gray-800">Order Summary</h3>
+          <div className="space-y-3 mb-6 border-b border-pink-50 pb-6">
+            <div className="flex justify-between text-gray-600 font-medium">
+              <span>Subtotal</span>
+              <span>₹{mainProductDiscounted + (activeUpsellsCount * 299)}</span>
+            </div>
+            <div className="flex justify-between text-green-600 font-bold italic">
+              <span>Discount</span>
+              <span>-₹{(activeUpsellsCount * (299 - 99))}</span>
+            </div>
+          </div>
+
+          <div className="flex justify-between items-center mb-6">
+            <span className="text-2xl font-bold text-gray-700">Total Amount</span>
+            <span className="text-4xl font-black text-[#D64D6E]">₹{finalTotal}</span>
+          </div>
+          
           <button onClick={handlePurchase} className="w-full bg-[#D64D6E] hover:bg-[#b03a55] text-white py-4 rounded-full font-bold text-lg shadow-xl flex items-center justify-center gap-3 transition-all active:scale-95">
             <Sparkles size={20} /> கொள்முதல் முடிக்கவும்
           </button>
