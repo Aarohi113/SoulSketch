@@ -22,9 +22,9 @@ const Cart = () => {
     gender: 'Select gender'
   });
 const upsellItems = [
-    { id: 'horoscope', title: '2-Year Personal Horoscope Report', desc: "Get a roadmap of your next 24 months based on your unique birth chart. Know what's coming in love, career, money & health.", price: 99, oldPrice: 299 },
-    { id: 'wealth', title: 'Wealth Report', desc: "Confused about your money, career, or success path? Your birth chart holds powerful insights into what's blocking your abundance.", price: 99, oldPrice: 299 },
-    { id: 'ebook', title: 'Life path & Career guidance ebook', desc: "Get deep insights into your life purpose and professional growth through our specialized astrological ebook.", price: 99, oldPrice: 249 }
+    { id: 'horoscope', title: '2 ஆண்டு தனிப்பட்ட ஜாதக அறிக்கை', desc: "உங்கள் தனித்துவமான பிறப்பு ஜாதகத்தின் அடிப்படையில், அடுத்த 24 மாதங்களுக்கான உங்கள் வாழ்க்கைப் பாதை வரைபடத்தைப் பெறுங்கள்.காதல், தொழில், பணம் மற்றும் உடல்நலம் ஆகியவற்றில் உங்களை எதிர்கொள்ள இருப்பது என்ன என்பதை அறிந்து கொள்ளுங்கள்..", price: 99, oldPrice: 299 },
+    { id: 'wealth', title: 'செல்வ அறிக்கை', desc: "உங்கள் பணம், தொழில் அல்லது வெற்றிப் பாதை குறித்து குழப்பமாக உள்ளீர்களா? உங்கள் செல்வ வளர்ச்சியைத் தடுக்கின்ற காரணங்களை வெளிப்படுத்தும் சக்திவாய்ந்த தகவல்கள் உங்கள் பிறப்பு ஜாதகத்தில் மறைந்துள்ளன..", price: 99, oldPrice: 299 },
+    { id: 'ebook', title: 'வாழ்க்கைப் பாதை & தொழில் வழிகாட்டி eBook', desc: "எங்கள் சிறப்பு ஜோதிட eBook மூலம், உங்கள் வாழ்க்கையின் நோக்கம் மற்றும் தொழில்முறை வளர்ச்சி குறித்து ஆழமான புரிதலைப் பெறுங்கள்..", price: 99, oldPrice: 249 }
   ];
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -177,8 +177,8 @@ const upsellItems = [
           </div>
         </section>
 <section className="bg-[#FFF5F6] rounded-3xl p-6 md:p-8 border border-pink-100">
-          <h3 className="text-[#D64D6E] font-bold text-lg mb-1">● Enhance Your Love Journey</h3>
-          <p className="text-sm text-gray-500 mb-6 font-medium">Discover deeper cosmic guidance for your love life</p>
+          <h3 className="text-[#D64D6E] font-bold text-lg mb-1">● உங்கள் காதல் பயணத்தை மேம்படுத்துங்கள்</h3>
+          <p className="text-sm text-gray-500 mb-6 font-medium">உங்கள் காதல் வாழ்க்கைக்கான ஆழமான விண்மீன் வழிகாட்டுதலை கண்டறியுங்கள்.</p>
           
           <div className="space-y-6">
             {upsellItems.map((item) => (
@@ -198,14 +198,14 @@ const upsellItems = [
                     </div>
                   </div>
                   <p className="text-xs text-gray-500 mt-1 leading-relaxed pr-4">{item.desc}</p>
-                  <button className="text-[#D64D6E] text-xs font-bold underline mt-2">Show More</button>
+                 
                 </div>
               </div>
             ))}
           </div>
         </section>
         <section className="bg-white rounded-3xl p-8 shadow-sm border border-pink-50">
-          <h3 className="font-bold text-xl mb-6 text-gray-800">Order Summary</h3>
+          <h3 className="font-bold text-xl mb-6 text-gray-800">ஆர்டர் சுருக்கம்</h3>
           <div className="space-y-3 mb-6 border-b border-pink-50 pb-6">
             <div className="flex justify-between text-gray-600 font-medium">
               <span>Subtotal</span>
@@ -218,7 +218,7 @@ const upsellItems = [
           </div>
 
           <div className="flex justify-between items-center mb-6">
-            <span className="text-2xl font-bold text-gray-700">Total Amount</span>
+            <span className="text-2xl font-bold text-gray-700">மொத்த தொகை</span>
             <span className="text-4xl font-black text-[#D64D6E]">₹{finalTotal}</span>
           </div>
           
