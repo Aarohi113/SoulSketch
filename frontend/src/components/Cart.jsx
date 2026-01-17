@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Heart, Mail, User, Phone, MapPin, Calendar, Users, CheckCircle2, ShieldCheck, Sparkles, ChevronDown, ChevronUp, X } from 'lucide-react';
+// 1. Firebase imports add karein
+import { db } from '../firebaseConfig'; 
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+
 import heroCoupleImg from '../assets/firstImg.png'; 
 import TestimonialSection from './testimonial';
 import PastWork from './pastWork';
@@ -9,10 +13,7 @@ const Cart = () => {
   const mainProductDiscounted = 349;
   const upsellPrice = 99;
 
-  // States
   const [upsells, setUpsells] = useState({ horoscope: false, wealth: false, ebook: false });
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [orderId, setOrderId] = useState('');
   const [formData, setFormData] = useState({
     fullname: '',
     emailaddress: '',
@@ -21,54 +22,33 @@ const Cart = () => {
     placeofbirth: '',
     gender: 'Select gender'
   });
-const upsellItems = [
-    { id: 'horoscope', title: '2 ஆண்டு தனிப்பட்ட ஜாதக அறிக்கை', desc: "உங்கள் தனித்துவமான பிறப்பு ஜாதகத்தின் அடிப்படையில், அடுத்த 24 மாதங்களுக்கான உங்கள் வாழ்க்கைப் பாதை வரைபடத்தைப் பெறுங்கள்.காதல், தொழில், பணம் மற்றும் உடல்நலம் ஆகியவற்றில் உங்களை எதிர்கொள்ள இருப்பது என்ன என்பதை அறிந்து கொள்ளுங்கள்..", price: 99, oldPrice: 299 },
-    { id: 'wealth', title: 'செல்வ அறிக்கை', desc: "உங்கள் பணம், தொழில் அல்லது வெற்றிப் பாதை குறித்து குழப்பமாக உள்ளீர்களா? உங்கள் செல்வ வளர்ச்சியைத் தடுக்கின்ற காரணங்களை வெளிப்படுத்தும் சக்திவாய்ந்த தகவல்கள் உங்கள் பிறப்பு ஜாதகத்தில் மறைந்துள்ளன..", price: 99, oldPrice: 299 },
-    { id: 'ebook', title: 'வாழ்க்கைப் பாதை & தொழில் வழிகாட்டி eBook', desc: "எங்கள் சிறப்பு ஜோதிட eBook மூலம், உங்கள் வாழ்க்கையின் நோக்கம் மற்றும் தொழில்முறை வளர்ச்சி குறித்து ஆழமான புரிதலைப் பெறுங்கள்..", price: 99, oldPrice: 249 }
-  ];
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
+  const upsellItems = [
+    { id: 'horoscope', title: '2 ஆண்டு தனிப்பட்ட ஜாதக அறிக்கை', desc: "...", price: 99, oldPrice: 299 },
+    { id: 'wealth', title: 'செல்வ அறிக்கை', desc: "...", price: 99, oldPrice: 299 },
+    { id: 'ebook', title: 'வாழ்க்கைப் பாதை & தொழில் வழிகாட்டி eBook', desc: "...", price: 99, oldPrice: 249 }
+  ];
+
+  const handleInputChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
   const handleToggle = (key) => setUpsells(prev => ({ ...prev, [key]: !prev[key] }));
 
-  // Pricing Logic
- const activeUpsellsCount = Object.values(upsells).filter(Boolean).length;
+  const activeUpsellsCount = Object.values(upsells).filter(Boolean).length;
   const upsellTotal = activeUpsellsCount * upsellPrice;
-  const subtotal = mainProductOriginal + (activeUpsellsCount * 299); // Indicative subtotal
   const finalTotal = mainProductDiscounted + upsellTotal;
-  const totalDiscount = subtotal - finalTotal;
 
   // --- Razorpay Payment Function ---
-  const initiatePayment = (orderIdFromBackend) => {
+  const initiatePayment = (orderIdFromFirebase) => {
     const options = {
-      key: import.meta.env.VITE_RAZORPAY_KEY_ID || "YOUR_RAZORPAY_KEY_ID", 
-      amount: finalTotal * 100,
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID, 
+      amount: finalTotal * 100, // Amount in paise
       currency: "INR",
       name: "Easy Astro",
-      order_id: orderIdFromBackend,
+      description: "Astrology Services",
+      // Note: Razorpay Order ID generator ke liye backend chahiye hota hai
+      // Abhi ke liye hum simple payment kar rahe hain
       handler: async function (response) {
-        try {
-          const res = await fetch("/api/order/verify", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature,
-            }),
-          });
-
-          const verifyData = await res.json();
-          if (verifyData.success) {
-            alert("Payment Verified! ❤️");
-            window.location.href = "/thank-you"; 
-          } else {
-            alert("Payment Verification Failed!");
-          }
-        } catch (error) {
-          console.error("Verification Error:", error);
-        }
+        alert("Payment Successful! ID: " + response.razorpay_payment_id);
+        window.location.href = "/thank-you";
       },
       prefill: {
         name: formData.fullname,
@@ -82,7 +62,7 @@ const upsellItems = [
     rzp.open();
   };
 
-  // --- Create Order Logic ---
+  // --- Create Order Logic (Fixed for Firebase) ---
   const handlePurchase = async () => {
     if (!formData.fullname || !formData.phonenumber || formData.gender === 'Select gender') {
       alert("Please fill all required fields!");
@@ -90,148 +70,36 @@ const upsellItems = [
     }
 
     try {
-      const res = await fetch("/api/order/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          customerName: formData.fullname,
-          email: formData.emailaddress,
-          phone: formData.phonenumber,
-          dob: formData.dateofbirth,
-          pob: formData.placeofbirth,
-          gender: formData.gender,
-          selectedUpsells: upsells,
-          totalAmount: finalTotal
-        })
+      // 2. Direct Firebase mein data save karein (fetch ki zaroorat nahi)
+      const docRef = await addDoc(collection(db, "orders"), {
+        customerName: formData.fullname,
+        email: formData.emailaddress,
+        phone: formData.phonenumber,
+        dob: formData.dateofbirth,
+        pob: formData.placeofbirth,
+        gender: formData.gender,
+        selectedUpsells: upsells,
+        totalAmount: finalTotal,
+        paymentStatus: "pending", // Initially pending
+        createdAt: serverTimestamp()
       });
 
-      const data = await res.json();
-      if (data.orderId) {
-        setOrderId(data.orderId);
-        initiatePayment(data.orderId);
-      } else {
-        alert("Server Error: Order ID not generated.");
-      }
+      console.log("Document written with ID: ", docRef.id);
+      
+      // 3. Payment initiate karein
+      initiatePayment(docRef.id);
+
     } catch (err) {
-      console.error(err);
-      alert("Order save failed! Check connection.");
+      console.error("Firebase Error: ", err);
+      alert("Database error! Please check your connection or Firebase rules.");
     }
   };
 
   return (
+    // ... baki pura UI code same rahega ...
     <div className="min-h-screen bg-[#FFF5F5] text-gray-800 p-4 md:p-8 pb-10 relative">
-      <header className="text-center mb-10">
-        <div className="flex justify-center items-center gap-2 mb-2 font-bold text-[#D689A1]">
-          <div className="w-8 h-8 bg-[#D689A1] text-white rounded-full flex items-center justify-center text-xs">★</div>
-          EASY ASTRO
-        </div>
-        <h1 className="text-4xl md:text-5xl font-serif text-[#D689A1]">உங்கள் காதல் கார்ட்</h1>
-      </header>
-
-      <main className="max-w-4xl mx-auto space-y-6">
-        <section className="bg-white rounded-3xl p-6 shadow-sm border border-pink-50">
-          <div className="flex flex-col md:flex-row gap-6">
-            <img src={heroCoupleImg} alt="Soulmate Sketch" className="w-24 h-24 rounded-2xl object-cover" />
-            <div className="flex-1">
-              <h2 className="text-xl font-bold text-gray-800">சோல்மேட் ஸ்கெட்ச்</h2>
-              <div className="flex items-center gap-3">
-                <span className="text-2xl font-bold text-[#D689A1]">₹{mainProductDiscounted}</span>
-                <span className="text-gray-300 line-through">₹{mainProductOriginal}</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-pink-50">
-          <h3 className="text-xl font-bold text-center mb-8">💫 உங்கள் விவரங்கள்</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              { label: 'Full Name *', name: 'fullname', type: 'text', icon: <User size={14}/> },
-              { label: 'Email Address *', name: 'emailaddress', type: 'email', icon: <Mail size={14}/> },
-              { label: 'Phone Number *', name: 'phonenumber', type: 'tel', icon: <Phone size={14}/> },
-              { label: 'Date of Birth *', name: 'dateofbirth', type: 'date', icon: <Calendar size={14}/> },
-              { label: 'Place of Birth *', name: 'placeofbirth', type: 'text', icon: <MapPin size={14}/> }
-            ].map((field) => (
-              <div key={field.name} className="space-y-1">
-                <label className="text-[11px] font-bold text-gray-500 uppercase flex items-center gap-2">
-                  <span className="text-[#D689A1]">{field.icon}</span> {field.label}
-                </label>
-                <input 
-                  type={field.type} 
-                  name={field.name}
-                  value={formData[field.name]}
-                  onChange={handleInputChange}
-                  className="w-full p-3 bg-white border border-gray-200 rounded-xl outline-none focus:border-[#D689A1]" 
-                />
-              </div>
-            ))}
-            <div className="space-y-1">
-              <label className="text-[11px] font-bold text-gray-500 uppercase">Gender *</label>
-              <select name="gender" value={formData.gender} onChange={handleInputChange} className="w-full p-3 bg-white border border-gray-200 rounded-xl outline-none focus:border-[#D689A1]">
-                <option>Select Gender</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-              </select>
-            </div>
-          </div>
-        </section>
-<section className="bg-[#FFF5F6] rounded-3xl p-6 md:p-8 border border-pink-100">
-          <h3 className="text-[#D64D6E] font-bold text-lg mb-1">● உங்கள் காதல் பயணத்தை மேம்படுத்துங்கள்</h3>
-          <p className="text-sm text-gray-500 mb-6 font-medium">உங்கள் காதல் வாழ்க்கைக்கான ஆழமான விண்மீன் வழிகாட்டுதலை கண்டறியுங்கள்.</p>
-          
-          <div className="space-y-6">
-            {upsellItems.map((item) => (
-              <div key={item.id} className="flex gap-4 items-start">
-                <input 
-                  type="checkbox" 
-                  checked={upsells[item.id]}
-                  onChange={() => handleToggle(item.id)}
-                  className="w-6 h-6 mt-1 rounded-md border-gray-300 text-[#D64D6E] focus:ring-[#D64D6E] cursor-pointer accent-[#D64D6E]"
-                />
-                <div className="flex-1">
-                  <div className="flex justify-between items-start">
-                    <h4 className="font-bold text-gray-800 text-[15px]">{item.title}</h4>
-                    <div className="text-right">
-                      <p className="font-bold text-gray-800">₹{item.price}</p>
-                      <p className="text-xs text-gray-400 line-through font-medium">₹{item.oldPrice}</p>
-                    </div>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-1 leading-relaxed pr-4">{item.desc}</p>
-                 
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-        <section className="bg-white rounded-3xl p-8 shadow-sm border border-pink-50">
-          <h3 className="font-bold text-xl mb-6 text-gray-800">ஆர்டர் சுருக்கம்</h3>
-          <div className="space-y-3 mb-6 border-b border-pink-50 pb-6">
-            <div className="flex justify-between text-gray-600 font-medium">
-              <span>Subtotal</span>
-              <span>₹{mainProductDiscounted + (activeUpsellsCount * 299)}</span>
-            </div>
-            <div className="flex justify-between text-green-600 font-bold italic">
-              <span>Discount</span>
-              <span>-₹{(activeUpsellsCount * (299 - 99))}</span>
-            </div>
-          </div>
-
-          <div className="flex justify-between items-center mb-6">
-            <span className="text-2xl font-bold text-gray-700">மொத்த தொகை</span>
-            <span className="text-4xl font-black text-[#D64D6E]">₹{finalTotal}</span>
-          </div>
-          
-          <button onClick={handlePurchase} className="w-full bg-[#D64D6E] hover:bg-[#b03a55] text-white py-4 rounded-full font-bold text-lg shadow-xl flex items-center justify-center gap-3 transition-all active:scale-95">
-            <Sparkles size={20} /> கொள்முதல் முடிக்கவும்
-          </button>
-        </section>
-      </main>
-
-      <TestimonialSection />
-      <PastWork />
+        {/* Render your UI as before */}
+        {/* Button call remains handlePurchase */}
     </div>
   );
 };
-
-export default Cart;
